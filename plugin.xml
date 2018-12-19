@@ -4,7 +4,7 @@
     <description>ExternalApp OPen</description>
     <license>MIT</license>
     <js-module src="www/plugin.js" name="externalapp">
-        <clobbers target="ExternalApp" />
+        <clobbers target="window.plugins.externalapp" />
     </js-module>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
