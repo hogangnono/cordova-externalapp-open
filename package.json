@@ -1,0 +1,15 @@
+{
+  "id": "cordova-externalapp-open",
+  "name": "cordova-externalapp-open",
+  "version": "0.0.1",
+  "description": "Cordova External App Open Plugin",
+  "cordova": {
+    "id": "cordova-externalapp-open",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "author": "Cayden",
+  "license": "MIT"
+}
