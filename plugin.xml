@@ -20,6 +20,13 @@
                 <param name="ios-package" value="ExternalApp" />
             </feature>
         </config-file>
+
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+          <array>
+            <string>zigbang</string>
+            <string>youtube</string>
+          </array>
+        </config-file>
         <source-file src="src/ios/ExternalApp.m" />
         <header-file src="src/ios/ExternalApp.h" />
     </platform>
