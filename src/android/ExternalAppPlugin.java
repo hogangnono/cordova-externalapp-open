@@ -13,13 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 
 
 public class ExternalAppPlugin extends CordovaPlugin {
@@ -39,19 +38,34 @@ public class ExternalAppPlugin extends CordovaPlugin {
         Log.d(TAG, "Executing...");
         if("openYoutube".equals(action))
         {
-            return openYoutube(callbackContext);
+            return openYoutube(callbackContext, args);
         }
 
         return false;
     }
 
-    private boolean openYoutube(final CallbackContext callbackContext) {
+    private boolean openYoutube(final CallbackContext callbackContext, final JSONArray args) {
 
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 // Intent 로 유튜브 앱 오픈
                 // 오픈 안되었다면 Error. 열었다면 Success 보냄
+                try {
+                    String videoId = args.getString(0);
+                    if (videoId == null || videoId.isEmpty()) {
+                        callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "video id is empty"));
+                        return;
+                    }
+                    Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
+                    context.startActivity(appIntent);
+                } catch (ActivityNotFoundException ex) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "not installed youtubeapp"));
+                } catch (JSONException e) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "argument parsing error"));
+                }
+
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ""));
             }
         });
         return true;
