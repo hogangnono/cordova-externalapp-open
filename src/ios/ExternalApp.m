@@ -25,4 +25,15 @@
 
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
 }
+
+- (void)getAppStartTime:(CDVInvokedUrlCommand *)command
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDate *startDate = delegate.startDate;
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    NSString *dateString = [df stringFromDate:startDate];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:dateString];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+}
 @end
