@@ -36,16 +36,16 @@ public class ExternalAppPlugin extends CordovaPlugin {
     @Override
     public boolean execute(final String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d(TAG, "Executing...");
-        if("openYoutube".equals(action))
-        {
+        if("openYoutube".equals(action)) {
             return openYoutube(callbackContext, args);
+        } else if ("getAppStartTime".equals(action)) {
+            return getAppStartTime(callbackContext, args);
         }
 
         return false;
     }
 
     private boolean openYoutube(final CallbackContext callbackContext, final JSONArray args) {
-
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -68,6 +68,20 @@ public class ExternalAppPlugin extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ""));
             }
         });
+        return true;
+    }
+
+    private boolean getAppStartTime(final CallbackContext callbackContext, final JSONArray args) {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                // 시작시 저장해놓은 시간을 그대로 리턴
+                Date appStartTime = ((HogangnonoApplication)this.getApplication()).getAppStartTime();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                String appStartTimeString = format.format(appStartTime);
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, appStartTimeString));
+            }
+        })
         return true;
     }
 }
