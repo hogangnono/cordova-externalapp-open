@@ -20,6 +20,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.hogangnono.hogangnono.HogangnonoApplication;
+
 
 public class ExternalAppPlugin extends CordovaPlugin {
 
