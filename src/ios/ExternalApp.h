@@ -11,5 +11,7 @@
 @interface ExternalApp : CDVPlugin
 
 - (void)openYoutube:(CDVInvokedUrlCommand *)command;
+- (void)getAppStartTime:(CDVInvokedUrlCommand *)command;
+
 @end
 
