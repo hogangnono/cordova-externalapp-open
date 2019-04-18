@@ -6,6 +6,7 @@
 //
 #import "ExternalApp.h"
 #import <Cordova/CDVPlugin.h>
+#import "AppDelegate+ExternalAppPlugin.h"
 
 @implementation ExternalApp
 
@@ -29,7 +30,7 @@
 - (void)getAppStartTime:(CDVInvokedUrlCommand *)command
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSDate *startDate = delegate.startDate;
+    NSDate *startDate = delegate.applicationStartDate;
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
     NSString *dateString = [df stringFromDate:startDate];

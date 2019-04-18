@@ -29,5 +29,8 @@
         </config-file>
         <source-file src="src/ios/ExternalApp.m" />
         <header-file src="src/ios/ExternalApp.h" />
+
+        <header-file src="src/ios/AppDelegate+ExternalAppPlugin.h" />
+        <source-file src="src/ios/AppDelegate+ExternalAppPlugin.m" />
     </platform>
 </plugin>
