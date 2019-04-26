@@ -60,7 +60,7 @@ public class ExternalAppPlugin extends CordovaPlugin {
                         return;
                     }
                     Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
-                    context.startActivity(appIntent);
+                    context.startActivity(appIntent.addFlags(FLAG_ACTIVITY_NEW_TASK));
                 } catch (ActivityNotFoundException ex) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "not installed youtubeapp"));
                 } catch (JSONException e) {
