@@ -78,10 +78,15 @@ public class ExternalAppPlugin extends CordovaPlugin {
             @Override
             public void run() {
                 // 시작시 저장해놓은 시간을 그대로 리턴
-                Date appStartTime = ((HogangnonoApplication)this.getApplication()).getAppStartTime();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-                String appStartTimeString = format.format(appStartTime);
-                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, appStartTimeString));
+                Date appStartTime = HogangnonoApplication.getAppStartTime();
+                if (appStartTime != null) {
+                    HogangnonoApplication.resetAppStartTime();
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    String appStartTimeString = format.format(appStartTime);
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, appStartTimeString));
+                } else {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "is not cold started."));
+                }
             }
         })
         return true;
