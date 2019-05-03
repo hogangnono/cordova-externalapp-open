@@ -2,6 +2,8 @@ package com.hogangnono.cordova.plugin;
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -60,7 +62,7 @@ public class ExternalAppPlugin extends CordovaPlugin {
                         return;
                     }
                     Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoId));
-                    context.startActivity(appIntent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+                    context.startActivity(appIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 } catch (ActivityNotFoundException ex) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "not installed youtubeapp"));
                 } catch (JSONException e) {
@@ -87,8 +89,9 @@ public class ExternalAppPlugin extends CordovaPlugin {
                 } else {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "is not cold started."));
                 }
+
             }
-        })
+        });
         return true;
     }
 }
