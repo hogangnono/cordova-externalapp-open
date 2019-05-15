@@ -8,11 +8,11 @@
     </js-module>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="ExternalAppPlugin">
-                <param name="android-package" value="com.hogangnono.cordova.plugin.ExternalAppPlugin"/>
+            <feature name="ExternalApp">
+                <param name="android-package" value="com.hogangnono.cordova.plugin.ExternalApp"/>
             </feature>
         </config-file>
-         <source-file src="src/android/ExternalAppPlugin.java" target-dir="src/com/hogangnono/cordova/plugin/" />
+         <source-file src="src/android/ExternalApp.java" target-dir="src/com/hogangnono/cordova/plugin/" />
     </platform>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">

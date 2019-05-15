@@ -25,9 +25,9 @@ import android.util.Log;
 import com.hogangnono.hogangnono.HogangnonoApplication;
 
 
-public class ExternalAppPlugin extends CordovaPlugin {
+public class ExternalApp extends CordovaPlugin {
 
-    private static final String TAG = "ExternalAppPlugin";
+    private static final String TAG = "ExternalApp";
     private Context context;
 
     @Override
